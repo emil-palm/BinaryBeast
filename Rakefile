@@ -17,7 +17,7 @@ require "binarybeast/version"
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "BinaryBeast"
+  gem.name = "binarybeast"
   gem.homepage = "http://github.com/mrevilme/BinaryBeast"
   gem.license = "MIT"
   gem.summary = %Q{Load data from BinaryBeast}
