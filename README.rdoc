@@ -2,13 +2,13 @@
 
 Load information from binarybeast.com using their api.
 
-== Usage == 
+== Usage
 BinaryBeast::api_key = "your_api_key"
 tournament = BinaryBeast::Tournament.new(:tourney_id => "tournament_id")
 puts tournament.teams.inspect
 puts tournament.groups.inspect
 
-== Notes ==
+== Notes
 This is  a beta, i have not implemented all functions in the api but its not that hard.
 Look at the tournament.rb / team.rb to se how to load data.
 
