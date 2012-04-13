@@ -1,19 +1,14 @@
+require 'ostruct'
 module BinaryBeast
-	class Base < Hashie::Mash
+	class Base < OpenStruct
 		include HTTParty
-		include Hashie::Extensions::MergeInitializer
 		base_uri "https://binarybeast.com/api"
 		format :json
 
 
-		def bb_inspect(extra={})
-			extras = ""
-			extra.each_pair { |k,v| extras << " #{k}: #{v}"}
-			"#<#{self.class.to_s}#{extras}>"
+		def inspect
+			"#<#{self.class.to_s}>"
 		end
-		
-		alias_method :to_s, :bb_inspect
-		alias_method :inspect, :bb_inspect
 
 		def self.build(method,args={})
 			args.merge! ({ 

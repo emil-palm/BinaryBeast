@@ -1,11 +1,5 @@
 module BinaryBeast
 	class Tournament < BinaryBeast::Base
-
-		def inspect(extras={})
-			return super({:title => self.title }) if self.key? :title
-			return super({:id => self.tourney_id }) if self.key? :tourney_id
-		end
-		alias_method :org_initialize, :initialize
 		def self.list
 			self.build("Tourney.TourneyList.My") do |response|
 				{
@@ -18,8 +12,9 @@ module BinaryBeast
 		def load
 			BinaryBeast::Base.build("Tourney.TourneyLoad.info", :tourney_id => self.tourney_id ) do |response|
 				response["tourney_info"].each_pair do |att, value|
-        			self[att] = value
+					self.send("#{att}=", value)
       			end
+      			return self
 			end
 		end
 
@@ -39,8 +34,8 @@ module BinaryBeast
 			@groups
 		end
 
-		def initialize(hash = {}, default = nil, &block)
-			org_initialize hash, default, &block
+		def initialize(hash = nil)
+			super hash
 			@groups = {}
 		end
 

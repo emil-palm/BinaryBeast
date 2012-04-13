@@ -1,38 +1,29 @@
 require 'pp'
 module BinaryBeast
 	class Team < BinaryBeast::Base
-		def inspect(extras={})
-			return super({:name => self.display_name }) if self.key? :display_name
-			return super({:id => self.tourney_team_id }) if self.key? :tourney_team_id
-		end
-		alias_method :org_initialize, :initialize
 
-		def initialize(hash={}, tournament = nil, &block)
-
-			org_initialize(hash, nil, &block)
+		def initialize(hash=nil, tournament = nil)
+			super hash
 			self.tournament = tournament if tournament
-			self.group = hash["group"]
-			# self.tournament.groups[self.group.letter] << self if self.group and tournament
+			self.group = hash["group"] if hash["group"]
 		end
 
 		class << self
 			def load(tourney_team_id)
 				BinaryBeast::Base.build("Tourney.TourneyLoad.Team", :tourney_team_id => tourney_team_id) do |response|
-					return BinaryBeast::Team.new(nil, response["team_info"])
+					if response["result"] == 200
+						return BinaryBeast::Team.new(response["team_info"],nil)
+					end
 				end
 			end
 		end
 
 		def group=(value)
-			if self.tournament.groups[value] 
-				self.[]=("group",self.tournament.groups[value])
+			if self.tournament.groups[value]
+				self.send("group=",self.tournament.groups[value])
 			else
 				self.tournament.groups[value] = BinaryBeast::Group.new(value)
 			end
-		end
-
-		def group
-			self['group']
 		end
 
 		def load
