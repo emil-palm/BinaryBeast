@@ -7,7 +7,6 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 gem 'httparty'
 gem 'hashie'
-gem 'pp'
 group :development do
   gem "rdoc", "~> 3.12"
   gem "bundler", ">= 1.0.0"

@@ -11,16 +11,20 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
+$:.push File.expand_path("../lib", __FILE__)
+require "binarybeast/version"
+
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "BinaryBeast"
   gem.homepage = "http://github.com/mrevilme/BinaryBeast"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "emil@md5.nu"
+  gem.summary = %Q{Load data from BinaryBeast}
+  gem.description = %Q{Load tournament and other info from binarybeast using their api}
+  gem.email = "emil@x86.nu"
   gem.authors = ["Emil Palm"]
+  gem.version = BinaryBeast::VERSION
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -30,14 +34,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
 end
 
 task :default => :test
