@@ -20,9 +20,5 @@ module BinaryBeast
 		def <<(team)
 			@teams << team
 		end
-
-		# def inspect
-		# 	"im gay"
-		# end
 	end
 end

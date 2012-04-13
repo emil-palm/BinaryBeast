@@ -44,11 +44,5 @@ module BinaryBeast
 				response['teams'].map { |t| BinaryBeast::Team.new(t,self) }
 			end
 		end
-
-		# def info
-		# 	BinaryBeast::Base.build("Tourney.TourneyLoad.Info", :tourney_id => self.tourney_id ) do |response|
-				
-		# 	end
-		# end
 	end
 end
