@@ -6,7 +6,7 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 gem 'httparty'
-gem 'hashie'
+gem 'hashie', :git => "https://github.com/intridea/hashie.git"
 group :development do
   gem "rdoc", "~> 3.12"
   gem "bundler", ">= 1.0.0"

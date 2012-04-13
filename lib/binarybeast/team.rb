@@ -1,29 +1,20 @@
-
+require 'pp'
 module BinaryBeast
 	class Team < BinaryBeast::Base
-  		property :wins
-  		property :losses
-  		property :draws
-		property :points
-		property :display_name
-		property :game_wins
-		property :game_losses
-		property :game_draws
-		property :game_difference
-		property :tourney_team_id
-		property :tourney_player_id
-		property :invoice_id
-		property :permissions
-		property :country_flag
-		property :notes
-		property :admin_password
-		property :user_id
-		property :country
-		property :country_code
-		property :country_code_short
-		property :status
-		property :network_display_name
-		
+		def inspect(extras={})
+			return super({:name => self.display_name }) if self.key? :display_name
+			return super({:id => self.tourney_team_id }) if self.key? :tourney_team_id
+		end
+		alias_method :org_initialize, :initialize
+
+		def initialize(hash={}, tournament = nil, &block)
+
+			org_initialize(hash, nil, &block)
+			self.tournament = tournament if tournament
+			self.group = hash["group"]
+			# self.tournament.groups[self.group.letter] << self if self.group and tournament
+		end
+
 		class << self
 			def load(tourney_team_id)
 				BinaryBeast::Base.build("Tourney.TourneyLoad.Team", :tourney_team_id => tourney_team_id) do |response|
@@ -36,15 +27,13 @@ module BinaryBeast
 			if self.tournament.groups[value] 
 				self.[]=("group",self.tournament.groups[value])
 			else
-				self.[]=("group", BinaryBeast::Group.new(value))
-				self.tournament.groups[value] ||= self.group 
+				self.tournament.groups[value] = BinaryBeast::Group.new(value)
 			end
 		end
 
 		def group
 			self['group']
 		end
-		property :group
 
 		def load
 			BinaryBeast::Base.build("Tourney.TourneyLoad.Team", :tourney_team_id => self.tourney_team_id) do |response|
@@ -53,13 +42,6 @@ module BinaryBeast
       			end
       			return
 			end
-		end
-		
-		def initialize(tournament=nil, hash)
-			super hash
-			self.tournament = tournament if tournament
-			self.group = hash["group"] if hash["group"]
-			self.tournament.groups[self.group.letter] << self if self.group and tournament
 		end
 
 		def tournament=(tournament)
@@ -73,7 +55,7 @@ module BinaryBeast
 		def oponent
 			team = nil;
 			BinaryBeast::Base.build("Tourney.TourneyTeam.GetOTourneyTeamID", :return_data =>1, :tourney_team_id => self.tourney_team_id) do |response|
-				team = BinaryBeast::Team.new(response['team'])			
+				team = BinaryBeast::Team.load response['o_tourney_team_id']
 			end
 
 			return team

@@ -1,24 +1,25 @@
-require 'httparty'
-
 module BinaryBeast
 	class Tournament < BinaryBeast::Base
-		property :title
-		property :status
-		property :type_id
-		property :location
-		property :game_code
-		property :game
-		property :teams_confirmed_count
-		property :tourney_id
-		property :type
-		property :tourney_team_id
 
+		def inspect(extras={})
+			return super({:title => self.title }) if self.key? :title
+			return super({:id => self.tourney_id }) if self.key? :tourney_id
+		end
+		alias_method :org_initialize, :initialize
 		def self.list
 			self.build("Tourney.TourneyList.My") do |response|
 				{
 					:created => response['result']['creator']['list'].map { |c| BinaryBeast::Tournament.new(c) },
 					:joined => response['result']['player']['list'].map { |c| BinaryBeast::Tournament.new(c) }
 				}
+			end
+		end
+
+		def load
+			BinaryBeast::Base.build("Tourney.TourneyLoad.info", :tourney_id => self.tourney_id ) do |response|
+				response["tourney_info"].each_pair do |att, value|
+        			self[att] = value
+      			end
 			end
 		end
 
@@ -38,14 +39,14 @@ module BinaryBeast
 			@groups
 		end
 
-		def initialize(opts)
-			super opts
+		def initialize(hash = {}, default = nil, &block)
+			org_initialize hash, default, &block
 			@groups = {}
 		end
 
 		def _load_teams
 			BinaryBeast::Base.build("Tourney.TourneyLoad.Teams",:tourney_id => self.tourney_id) do |response|
-				response['teams'].map { |t| BinaryBeast::Team.new(self,t) }
+				response['teams'].map { |t| BinaryBeast::Team.new(t,self) }
 			end
 		end
 

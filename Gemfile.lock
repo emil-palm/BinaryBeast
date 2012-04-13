@@ -1,8 +1,13 @@
+GIT
+  remote: https://github.com/intridea/hashie.git
+  revision: f7cb5e2b3c3ea3edd66ed2f9865eac7d7db80359
+  specs:
+    hashie (2.0.0.beta)
+
 GEM
   remote: http://rubygems.org/
   specs:
     git (1.2.5)
-    hashie (1.2.0)
     httparty (0.8.2)
       multi_json
       multi_xml
@@ -23,7 +28,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.0.0)
-  hashie
+  hashie!
   httparty
   jeweler (~> 1.8.3)
   rdoc (~> 3.12)

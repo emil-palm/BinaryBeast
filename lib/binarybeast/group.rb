@@ -1,5 +1,5 @@
 module BinaryBeast
-	class Group < BinaryBeast::Base
+	class Group 
 		def initialize(letter)
 			@teams = []
 			@letter = letter
