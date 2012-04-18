@@ -47,3 +47,7 @@ pkg
 
 # For rubinius:
 #*.rbc
+
+test.rb
+
+.test.rb.swp

@@ -1,3 +1,5 @@
+autoload 'HTTParty', 'httparty'
+autoload 'OpenStruct', 'ostruct'
 module BinaryBeast
 
 	autoload :Base,     	     'binarybeast/base'

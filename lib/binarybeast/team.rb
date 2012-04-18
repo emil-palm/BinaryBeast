@@ -1,11 +1,10 @@
-require 'pp'
 module BinaryBeast
 	class Team < BinaryBeast::Base
 
 		def initialize(hash=nil, tournament = nil)
 			super hash
 			self.tournament = tournament if tournament
-			self.group = hash["group"] if hash["group"]
+			self.set_group hash["group"] if hash["group"]
 		end
 
 		class << self
@@ -18,12 +17,14 @@ module BinaryBeast
 			end
 		end
 
-		def group=(value)
+		def set_group (value)
 			if self.tournament.groups[value]
-				self.send("group=",self.tournament.groups[value])
+				self.group = self.tournament.groups[value]
 			else
-				self.tournament.groups[value] = BinaryBeast::Group.new(value)
+				self.group = BinaryBeast::Group.new(value)
+				self.tournament.groups[self.group.letter] = self.group if self.tournament
 			end
+			self.group.teams << self if self.group
 		end
 
 		def load
@@ -46,6 +47,7 @@ module BinaryBeast
 		def oponent
 			team = nil;
 			BinaryBeast::Base.build("Tourney.TourneyTeam.GetOTourneyTeamID", :return_data =>1, :tourney_team_id => self.tourney_team_id) do |response|
+
 				team = BinaryBeast::Team.load response['o_tourney_team_id']
 			end
 

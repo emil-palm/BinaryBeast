@@ -1,4 +1,3 @@
-require 'ostruct'
 module BinaryBeast
 	class Base < OpenStruct
 		include HTTParty
