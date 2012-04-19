@@ -30,6 +30,8 @@ Gem::Specification.new do |s|
     "lib/binarybeast/team.rb",
     "lib/binarybeast/tournament.rb",
     "lib/binarybeast/version.rb",
+    "test/helper.rb",
+    "test/test_BinaryBeast.rb"
   ]
   s.homepage = "http://github.com/mrevilme/BinaryBeast"
   s.licenses = ["MIT"]
