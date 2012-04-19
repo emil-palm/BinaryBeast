@@ -1,8 +1,8 @@
+require 'httparty'
+require 'ostruct'
 require 'binarybeast/base'
 
 module BinaryBeast
-	require 'httparty'
-	require 'ostruct'
 
 
 

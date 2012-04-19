@@ -1,7 +1,6 @@
 
 
 
-
 module BinaryBeast
 
 	class Base < OpenStruct
