@@ -1,6 +1,4 @@
-require_relative 'group'
-require_relative 'team'
-require_relative 'tournament'
+
 
 
 
@@ -29,3 +27,7 @@ module BinaryBeast
 		end
 	end
 end
+
+require_relative 'group'
+require_relative 'team'
+require_relative 'tournament'
