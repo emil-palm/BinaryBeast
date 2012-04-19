@@ -1,7 +1,8 @@
+require 'group'
+require 'team'
+require 'tournament'
+
 module BinaryBeast
-	require 'binarybeast/group'
-	require 'binarybeast/team'
-	require 'binarybeast/tournament'
 
 	class Base < OpenStruct
 		include HTTParty

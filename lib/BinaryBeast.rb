@@ -1,12 +1,9 @@
-autoload 'HTTParty', 'httparty'
-autoload 'OpenStruct', 'ostruct'
-autoload 'BinaryBeast'
+require 'binarybeast/base'
 
 module BinaryBeast
 	require 'httparty'
 	require 'ostruct'
 
-	require 'binarybeast/base'
 
 
 	def self.api_key=(api_key)
