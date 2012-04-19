@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "binarybeast"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Emil Palm"]
-  s.date = "2012-04-13"
+  s.date = "2012-04-19"
   s.description = "Load tournament and other info from binarybeast using their api"
   s.email = "emil@x86.nu"
   s.extra_rdoc_files = [
@@ -23,14 +23,13 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "binarybeast.gemspec",
     "lib/BinaryBeast.rb",
     "lib/binarybeast/base.rb",
     "lib/binarybeast/group.rb",
     "lib/binarybeast/team.rb",
     "lib/binarybeast/tournament.rb",
     "lib/binarybeast/version.rb",
-    "test/helper.rb",
-    "test/test_BinaryBeast.rb"
   ]
   s.homepage = "http://github.com/mrevilme/BinaryBeast"
   s.licenses = ["MIT"]
@@ -43,20 +42,17 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
-      s.add_runtime_dependency(%q<hashie>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
     else
       s.add_dependency(%q<httparty>, [">= 0"])
-      s.add_dependency(%q<hashie>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     end
   else
     s.add_dependency(%q<httparty>, [">= 0"])
-    s.add_dependency(%q<hashie>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])

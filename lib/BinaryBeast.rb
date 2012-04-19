@@ -1,11 +1,13 @@
 autoload 'HTTParty', 'httparty'
 autoload 'OpenStruct', 'ostruct'
-module BinaryBeast
+autoload 'BinaryBeast'
 
-	autoload :Base,     	     'binarybeast/base'
-	autoload :Group,        	 'binarybeast/group'
-	autoload :Team,          	 'binarybeast/team'
-	autoload :Tournament,		 'binarybeast/tournament'
+module BinaryBeast
+	require 'httparty'
+	require 'ostruct'
+
+	require 'binarybeast/base'
+
 
 	def self.api_key=(api_key)
 		@@api_key = api_key

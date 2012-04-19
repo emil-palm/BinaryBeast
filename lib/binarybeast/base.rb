@@ -1,4 +1,8 @@
 module BinaryBeast
+	require 'binarybeast/group'
+	require 'binarybeast/team'
+	require 'binarybeast/tournament'
+
 	class Base < OpenStruct
 		include HTTParty
 		base_uri "https://binarybeast.com/api"
