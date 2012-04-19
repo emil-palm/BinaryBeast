@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "binarybeast.gemspec",
-    "lib/BinaryBeast.rb",
+    "lib/binarybeast.rb",
     "lib/binarybeast/base.rb",
     "lib/binarybeast/group.rb",
     "lib/binarybeast/team.rb",
